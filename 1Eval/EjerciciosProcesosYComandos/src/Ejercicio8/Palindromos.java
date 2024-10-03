@@ -35,7 +35,7 @@ public class Palindromos {
 
 
         String rutaProyecto = System.getProperty("user.dir");
-        String rutaDirectorio = rutaProyecto + File.separator + "src" + File.separator + "Ejercicio8" + File.separator + "textos"+File.separator;
+        String rutaDirectorio = rutaProyecto + File.separator + "src" + File.separator + "Ejercicio8" + File.separator + "texto"+File.separator;
 
         InputStreamReader in = new InputStreamReader(System.in);
         BufferedReader br= new BufferedReader(in);
