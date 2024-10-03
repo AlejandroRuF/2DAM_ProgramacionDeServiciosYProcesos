@@ -51,19 +51,11 @@ public class Lanzador2 {
             OutputStream os = p.getOutputStream();
             os.write(instruccion.getBytes());
             os.flush();
-            InputStream is = p.getInputStream();
-            int filas;
 
-            while((filas = is.read()) != -1){
-
-                System.out.print((char)filas);
-
-            }
-            is.close();
 
             InputStream es = p.getErrorStream();
             int errorChar;
-            System.out.println("\nSalida de errores (si hay):");
+            System.out.println("\n");
             while ((errorChar = es.read()) != -1) {
                 System.err.print((char) errorChar);
             }
