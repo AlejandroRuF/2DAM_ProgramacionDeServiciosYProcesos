@@ -17,26 +17,29 @@ public class LeerWeb {
         String ruta = "out/production/EjerciciosProcesosYComandos";
         File file = new File(ruta);
 
+        if (frase.split("@").length > 3) {
 
-        try {
-            String[] comando = {"java","Ejercicio9.VisitaWeb"};
-            ProcessBuilder pb = new ProcessBuilder(comando);
-            pb.directory(file);
-            Process p = pb.start();
+            throw new Exception("Demasiadas webs!");
 
-            OutputStream os = p.getOutputStream();
-            os.write(frase.getBytes());
-            os.flush();
+        }else {
+
+            try {
+                String[] comando = {"java", "Ejercicio9.VisitaWeb"};
+                ProcessBuilder pb = new ProcessBuilder(comando);
+                pb.directory(file);
+                Process p = pb.start();
+
+                OutputStream os = p.getOutputStream();
+                os.write(frase.getBytes());
+                os.flush();
 
 
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
 
-
-        }catch (Exception e){
-            System.err.println(e.getMessage());
+            }
 
         }
-
-
 
     }
 

@@ -52,11 +52,19 @@ public class Lanzador2 {
             os.write(instruccion.getBytes());
             os.flush();
 
+            InputStream es = p.getInputStream();
+            int Char;
+            System.out.println("\n");
+            while ((Char = es.read()) != -1) {
+                System.out.print((char) Char);
+            }
+            es.close();
 
-            InputStream es = p.getErrorStream();
+
+            InputStream esErr = p.getErrorStream();
             int errorChar;
             System.out.println("\n");
-            while ((errorChar = es.read()) != -1) {
+            while ((errorChar = esErr.read()) != -1) {
                 System.err.print((char) errorChar);
             }
             es.close();
