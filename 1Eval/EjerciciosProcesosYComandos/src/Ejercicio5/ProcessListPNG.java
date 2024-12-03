@@ -12,8 +12,8 @@ public class ProcessListPNG {
         String ruta = "/home/procesos/IdeaProjects/untitled";
 
         Scanner sc =  new Scanner(System.in);
-        System.out.println("Introduce la ruta que desees para comprobar los PNG Existentes");
-        ruta = sc.nextLine();
+//        System.out.println("Introduce la ruta que desees para comprobar los PNG Existentes");
+//        ruta = sc.nextLine();
 
         String[] cmd = {"bash", "-c", "ls "+ruta+"/*.png"};
         Process p = new ProcessBuilder(cmd).start();

@@ -67,7 +67,7 @@ public class Lanzador2 {
             while ((errorChar = esErr.read()) != -1) {
                 System.err.print((char) errorChar);
             }
-            es.close();
+            esErr.close();
 
         }catch (Exception e){
             System.out.println(e.getMessage());

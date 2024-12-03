@@ -80,8 +80,9 @@ public class Palindromos {
                     }
 
                 }
+                frase = frase+"\n";
 
-                FileWriter fw = new FileWriter(archivos.get(2));
+                FileWriter fw = new FileWriter(archivos.get(2),true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 bw.write(frase);
                 bw.newLine();
@@ -89,7 +90,7 @@ public class Palindromos {
 
                 if(palindromo){
 
-                    FileWriter fwPalindromo = new FileWriter(archivos.get(0));
+                    FileWriter fwPalindromo = new FileWriter(archivos.get(0),true);
                     BufferedWriter bwPalindromo = new BufferedWriter(fwPalindromo);
                     bwPalindromo.write(frase);
                     bwPalindromo.newLine();
@@ -97,7 +98,7 @@ public class Palindromos {
 
                 }else {
 
-                    FileWriter fwNoPalindromo = new FileWriter(archivos.get(1));
+                    FileWriter fwNoPalindromo = new FileWriter(archivos.get(1),true);
                     BufferedWriter bwNoPalindromo = new BufferedWriter(fwNoPalindromo);
                     bwNoPalindromo.write(frase);
                     bwNoPalindromo.newLine();
