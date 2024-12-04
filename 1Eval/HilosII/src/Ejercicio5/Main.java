@@ -3,10 +3,11 @@ package Ejercicio5;
 public class Main {
 
     public static void main(String[] args) {
+        int numPlatos = 20;
 
         PilaPlatos pilaPlatos = new PilaPlatos();
-        HiloSeca hiloSeca = new HiloSeca(20, pilaPlatos);
-        HiloFriega hiloFriega = new HiloFriega(20, pilaPlatos);
+        HiloSeca hiloSeca = new HiloSeca(numPlatos, pilaPlatos);
+        HiloFriega hiloFriega = new HiloFriega(numPlatos, pilaPlatos);
 
         hiloSeca.start();
         hiloFriega.start();
