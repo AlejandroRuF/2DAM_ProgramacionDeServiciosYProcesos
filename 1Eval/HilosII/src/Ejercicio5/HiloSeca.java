@@ -13,25 +13,25 @@ public class HiloSeca extends Thread {
     }
 
     public void run(){
+        for (int i = 0; i < num; i++) {
+            synchronized (pila) {
 
-        synchronized (pila) {
-            for (int i = 0; i < num; i++) {
 
-                while (pila.platos.size() <= 0) {
+                    while (pila.platos.size() <= 0) {
+                        try {
+                            pila.wait();
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+
+                    pila.secar();
                     try {
-                        pila.wait();
+                        sleep(50);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                }
-
-                pila.secar();
-                try {
-                    pila.wait(100);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-                pila.notify();
+                    pila.notify();
 
             }
         }
