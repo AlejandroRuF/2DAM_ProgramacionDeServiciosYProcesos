@@ -28,7 +28,7 @@ public class PilaPlatos {
 
         if (platos.size() > 0){
 
-            Plato platoSeco = platos.getFirst();
+            Plato platoSeco = platos.getLast();
             platos.remove(platoSeco);
             System.out.println("---Plato secado #"+ platoSeco.idPlato+ ", total platos en la pila : "+platos.size());;
 
