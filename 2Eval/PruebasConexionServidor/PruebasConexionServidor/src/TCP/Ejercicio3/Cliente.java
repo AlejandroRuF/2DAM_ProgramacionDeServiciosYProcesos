@@ -27,13 +27,15 @@ public class Cliente {
                 producto = sc.nextLine();
 
                 output.writeUTF(producto);
-            }while (!producto.equalsIgnoreCase("salir"));
-            if (!producto.equalsIgnoreCase("salir")) {
-                String respuesta = input.readUTF();
-                System.out.println("Respuesta del servidor: "+respuesta);
-            }else {
+
+                if (!producto.equalsIgnoreCase("salir")) {
+                    String respuesta = input.readUTF();
+                    System.out.println("Respuesta del servidor: " + respuesta);
+                }
+            }while (!producto.equalsIgnoreCase("salir")) ;
+
+
                 System.out.println("Cerrando Cliente...");
-            }
 
 
             sCliente.close();

@@ -62,9 +62,11 @@ public class ServidorBucle {
                                 if (input.available() > 0) {
                                     String mensaje = input.readUTF();
                                     System.out.println("Mensaje del cliente: " + mensaje);
-                                    output.writeUTF("Mensaje recibido del cliente");
+                                    System.out.println("Escribe el comando salir para apagar el servidor");
+
 
                                     if (mensaje.equalsIgnoreCase("salir")) {
+                                        output.writeUTF("Mensaje recibido del cliente");
                                         continuar = false;
                                         skServidor.close();
                                     }else {
@@ -80,6 +82,8 @@ public class ServidorBucle {
                                             BufferedWriter bw = new BufferedWriter(new FileWriter(archivo, true));
                                             bw.write(mensaje + "\n");
                                             bw.flush();
+                                        output.writeUTF("Mensaje recibido del cliente\n"+
+                                                mensaje+" Inscrito en la lista del archivo " + archivo.getName());
 
                                     }
                                 }
