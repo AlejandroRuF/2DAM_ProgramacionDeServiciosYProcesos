@@ -1,9 +1,8 @@
-package Ejercicio1;
+package TCP.Ejercicio1;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.*;
-import java.util.Scanner;
 
 public class Servidor {
     static final int Puerto = 2000;
@@ -15,10 +14,10 @@ public class Servidor {
 
             ServerSocket skServidor = new ServerSocket(Puerto);
             System.out.println("Escuchando en el puerto "+Puerto);
-            System.out.println("Escuchando al Ejercicio1.Cliente 1 ");
+            System.out.println("Escuchando al TCP.Ejercicio1.Cliente 1 ");
 
             Socket sCliente1 = skServidor.accept();
-//            System.out.println("Escuchando al Ejercicio1.Cliente 2 ");
+//            System.out.println("Escuchando al TCP.Ejercicio1.Cliente 2 ");
 //            Socket sCliente2 = skServidor.accept();
 
             DataInputStream input = new DataInputStream(sCliente1.getInputStream());
@@ -36,7 +35,7 @@ public class Servidor {
         } catch( Exception e ) {
             System.out.println( e.getMessage() );
         }
-        System.out.println("Ejercicio1.Servidor cerrado. ");
+        System.out.println("TCP.Ejercicio1.Servidor cerrado. ");
     }
 
 

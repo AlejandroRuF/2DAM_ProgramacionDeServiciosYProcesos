@@ -1,4 +1,4 @@
-package Ejercicio1;
+package TCP.Ejercicio2;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -20,7 +20,7 @@ public class Cliente {
             DataOutputStream output = new DataOutputStream(sCliente.getOutputStream());
             DataInputStream input = new DataInputStream(sCliente.getInputStream());
 
-            output.writeUTF("Hola Ejercicio1.Servidor");
+            output.writeUTF("Hola TCP.Ejercicio1.Servidor");
 
             String respuesta = input.readUTF();
             System.out.println("Respuesta del servidor: "+respuesta);
