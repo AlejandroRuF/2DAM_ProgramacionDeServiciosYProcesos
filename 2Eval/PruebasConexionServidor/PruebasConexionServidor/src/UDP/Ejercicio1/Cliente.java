@@ -28,6 +28,7 @@ public class Cliente {
             System.out.println("Enviando mensaje...");
             socketUDP.send(envio);
 
+
         } catch (UnknownHostException e) {
             throw new RuntimeException(e);
         } catch (SocketException e) {
