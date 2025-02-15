@@ -18,12 +18,13 @@ public class Cliente {
         System.out.println("Escribe un mensaje para enviar...");
         String mensaje = "";
         String comando = "";
+        String respuesta = "";
 
 
         try (DatagramSocket socketUDP = new DatagramSocket()) {
             InetAddress destino = InetAddress.getByName(HOST);
 
-            while (!mensaje.equalsIgnoreCase("4")) {
+            while (!mensaje.equalsIgnoreCase("4") && !mensaje.equalsIgnoreCase("123")) {
 
 
                 System.out.println("==TicketServer==\n" +
@@ -36,7 +37,7 @@ public class Cliente {
 
                 enviarMensaje(socketUDP, mensaje, destino, PUERTO_SERVER);
 
-                String respuesta = "";
+                respuesta = "";
 
                 while (!respuesta.equalsIgnoreCase("seguir")) {
 

@@ -108,6 +108,7 @@ public class TicketServer {
                         break;
 
                     case "123":
+                        enviarRespuesta("Servidor apagado, apagando cliente", socket);
                         System.out.println("Apagando Servidor");
                         enviarRespuesta("seguir", socket);
 
