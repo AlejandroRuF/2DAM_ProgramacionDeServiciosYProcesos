@@ -8,23 +8,51 @@ public class Cliente {
 
     //Falta Acabar bucle que se mantenga mientras no se pulse la opcion salir demas opciones dependiendo de la respuesta del servidor
 
-//    private static final int PUERTO_SERVER = 12345;
-//    private static final String HOST = "localhost";
-//    private static final int BUFFER_SIZE = 1024;
+    private static final int PUERTO_SERVER = 12345;
+    private static final String HOST = "localhost";
+    private static final int BUFFER_SIZE = 1024;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Escribe un mensaje para enviar...");
-        String mensaje = sc.nextLine();
+        String mensaje = "";
+        String comando = "";
+
 
         try (DatagramSocket socketUDP = new DatagramSocket()) {
             InetAddress destino = InetAddress.getByName(HOST);
 
-            enviarMensaje(socketUDP, mensaje, destino, PUERTO_SERVER);
+            while (!mensaje.equalsIgnoreCase("4")) {
 
-            String respuesta = recibirMensaje(socketUDP);
-            System.out.println("Mensaje recibido: " + respuesta);
+
+                System.out.println("==TicketServer==\n" +
+                        "Introduzca Opcion:\n" +
+                        "1-Listar butacas\n" +
+                        "2-Reservar butaca\n" +
+                        "3-Anular butaca\n" +
+                        "4-Salir" );
+                mensaje = sc.nextLine();
+
+                enviarMensaje(socketUDP, mensaje, destino, PUERTO_SERVER);
+
+                String respuesta = "";
+
+                while (!respuesta.equalsIgnoreCase("seguir")) {
+
+                    respuesta = recibirMensaje(socketUDP);
+
+                    if (!respuesta.equalsIgnoreCase("seguir")) {
+
+                        if (respuesta.equalsIgnoreCase("escribe")){
+                            String escribe = sc.nextLine();
+                            enviarMensaje(socketUDP, escribe, destino, PUERTO_SERVER);
+                        }else {
+                            System.out.println("Mensaje recibido: " + respuesta);
+                        }
+                    }
+                }
+            }
 
         } catch (UnknownHostException e) {
             System.err.println("Host desconocido: " + e.getMessage());

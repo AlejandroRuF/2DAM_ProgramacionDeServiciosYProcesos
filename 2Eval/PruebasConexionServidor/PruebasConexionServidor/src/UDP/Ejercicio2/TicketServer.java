@@ -35,11 +35,13 @@ public class TicketServer {
                     case "1":
 
                         enviarRespuesta(disponibilidad(), socket);
+                        enviarRespuesta("seguir", socket);
 
                         break;
 
                     case "2":
                         enviarRespuesta("Introduce tu nombre", socket);
+                        enviarRespuesta("escribe", socket);
                         String nombre = recibirMensaje(socket);
                         boolean estaReserva = estaReserva(nombre);
                         boolean estaEspera = estaEspera(nombre);
@@ -47,21 +49,29 @@ public class TicketServer {
 
                         if (butacasDisponibles > 0 && !estaReserva) {
 
-                            butacasOcupadas.put(String.valueOf(butacasDisponibles-(butacasDisponibles-1)), nombre);
+                            butacasOcupadas.put(String.valueOf((butacasOcupadas.size()-butacasDisponibles)+1), nombre);
                             butacasDisponibles--;
+                            enviarRespuesta("seguir", socket);
+
 
                         } else if (!estaEspera){
                             enEspera.add(nombre);
                             enviarRespuesta("No hay butacas disponibles, te pondremos en la lista de espera" +
                                     "\n"+disponibilidad(), socket);
+                            enviarRespuesta("seguir", socket);
+
                         }else {
                             enviarRespuesta("Ya tienes una butaca reservada o estas en la lista" +
                                     " de espera", socket);
+                            enviarRespuesta("seguir", socket);
+
                         }
                         break;
 
                     case "3":
                         enviarRespuesta("Introduce tu nombre", socket);
+                        enviarRespuesta("escribe", socket);
+
                         String nombre2 = recibirMensaje(socket);
                         boolean estaEsperas = estaEspera(nombre2);
                         boolean estaReservas = estaReserva(nombre2);
@@ -76,22 +86,37 @@ public class TicketServer {
                             }
                             enviarRespuesta("Butaca liberada" +
                                     "\n"+disponibilidad(), socket);
+                            enviarRespuesta("seguir", socket);
+
                         } else if (estaEsperas) {
                             enEspera.remove(nombre2);
                             enviarRespuesta("No tienes una butaca reservada, pero has sido eliminado de la lista de espera", socket);
+                            enviarRespuesta("seguir", socket);
+
                         } else {
                             enviarRespuesta("No tienes una butaca reservada", socket);
+                            enviarRespuesta("seguir", socket);
+
                         }
 
                         break;
 
+                    case "4":
+
+                        enviarRespuesta("Saliendo del servidor", socket);
+                        enviarRespuesta("seguir", socket);
+                        break;
+
                     case "123":
                         System.out.println("Apagando Servidor");
+                        enviarRespuesta("seguir", socket);
+
                         comando = "salir";
                         break;
 
                     default:
                         enviarRespuesta("Opción no válida", socket);
+                        enviarRespuesta("seguir", socket);
                         break;
 
 
