@@ -1,19 +1,20 @@
-package UDP.Ejercicio2;
+package UDP.Ejercicio3;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.net.*;
 import java.util.Scanner;
 
 public class Cliente {
 
 
-    private static final int PUERTO_SERVER = 12345;
+    private static final int PUERTO_SERVER = 6000;
     private static final String HOST = "localhost";
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Escribe un mensaje para enviar...");
+
         String mensaje = "";
         String respuesta = "";
 
@@ -21,43 +22,34 @@ public class Cliente {
         try (DatagramSocket socketUDP = new DatagramSocket()) {
             InetAddress destino = InetAddress.getByName(HOST);
 
-            while (!mensaje.equalsIgnoreCase("4") && !mensaje.equalsIgnoreCase("123")) {
+            while (!mensaje.equalsIgnoreCase("salir1")) {
+                System.out.println("Escribe una palabra para traducir...\n" +
+                        "Escribe salir1 para salir del programa");
 
-
-                System.out.println("==TicketServer==\n" +
-                        "Introduzca Opcion:\n" +
-                        "1-Listar butacas\n" +
-                        "2-Reservar butaca\n" +
-                        "3-Anular butaca\n" +
-                        "4-Salir" );
                 mensaje = sc.nextLine();
 
-                enviarMensaje(socketUDP, mensaje, destino, PUERTO_SERVER);
+                if (!mensaje.equalsIgnoreCase("salir1")) {
 
-                respuesta = "";
 
-                while (!respuesta.equalsIgnoreCase("seguir")) {
+                    enviarMensaje(socketUDP, mensaje, destino, PUERTO_SERVER);
 
+                    respuesta = "";
+
+                    socketUDP.setSoTimeout(5000);
                     respuesta = recibirMensaje(socketUDP);
-
-                    if (!respuesta.equalsIgnoreCase("seguir")) {
-
-                        if (respuesta.equalsIgnoreCase("escribe")){
-                            String escribe = sc.nextLine();
-                            enviarMensaje(socketUDP, escribe, destino, PUERTO_SERVER);
-                        }else {
-                            System.out.println("Mensaje recibido: " + respuesta);
-                        }
-                    }
+                    System.out.println(respuesta);
                 }
+
             }
 
         } catch (UnknownHostException e) {
             System.err.println("Host desconocido: " + e.getMessage());
         } catch (SocketException e) {
             System.err.println("Error de socket: " + e.getMessage());
+        } catch (InterruptedIOException e) {
+            System.err.println("No se encontro traduccion");
         } catch (IOException e) {
-            System.err.println("Error de E/S: " + e.getMessage());
+            throw new RuntimeException(e);
         }
     }
 

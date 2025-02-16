@@ -170,8 +170,7 @@ public class TicketServer {
 
         try {
             socket.receive(recibir);
-            String respuesta = new String(recibir.getData(), 0, recibir.getLength()).trim();
-            return respuesta;
+            return new String(recibir.getData(), 0, recibir.getLength()).trim();
 
         } catch (IOException e) {
             throw new RuntimeException(e);
