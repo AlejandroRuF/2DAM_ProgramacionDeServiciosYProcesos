@@ -16,6 +16,7 @@ public class ConfirmacionDeFichero {
 
             Object o = ois.readObject();
             String datos = (String) o;
+
             System.out.println("Datos: " + datos);
 
             o = ois.readObject();
